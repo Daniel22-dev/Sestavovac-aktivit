@@ -1,9 +1,95 @@
 {
   "flows": [
-    {"id":"ACTIVA-LOCAL-WORKFLOW","name":"Místní tvorba bez serveru","type":"browser","url":"/index.html","expectedText":"Vložte učivo","steps":[{"action":"click","selector":"#loadDemoBtn"},{"action":"click","selector":"[data-next=\"activities\"]"},{"action":"click","selector":"[data-next=\"generate\"]"},{"action":"click","selector":"#generateLocalBtn"},{"action":"wait","ms":800},{"action":"assertVisible","selector":".editor-workspace"}]},
-    {"id":"ACTIVA-MANUAL","name":"Manuál je dostupný offline","type":"browser","url":"/manual/index.html","expectedText":"39 typů aktivit","steps":[{"action":"assertVisible","selector":"#manualSearch"}]},
-    {"id":"ACTIVA-TESTS","name":"Interní testovací centrum","type":"browser","url":"/tests/index.html","expectedText":"Interní testovací centrum","steps":[{"action":"assertVisible","selector":"#runBtn"}]},
-    {"id":"ACTIVA-CACHE-ISOLATION","name":"Service worker nemaže cizí cache","type":"static","assertions":[{"file":"src/sw.js","regex":"startsWith\\(CACHE_PREFIX\\)","message":"Aktivace service workeru není omezena na vlastní prefix."}]},
-    {"id":"ACTIVA-SERVER-OFF","name":"Server je bezpečně vypnutý","type":"static","assertions":[{"file":"src/js/35-persistence-adapter.js","regex":"enabled:false","message":"Bezserverové vydání nemá vypnutý serverový konektor."}]}
+    {
+      "id": "ACTIVA-LOCAL-WORKFLOW",
+      "name": "Místní tvorba bez serveru",
+      "type": "browser",
+      "url": "/index.html",
+      "expectedText": "Vložte učivo",
+      "steps": [
+        {
+          "action": "click",
+          "selector": "#loadDemoBtn"
+        },
+        {
+          "action": "click",
+          "selector": "[data-next=\"activities\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-next=\"generate\"]"
+        },
+        {
+          "action": "click",
+          "selector": "label.choice-card:has(input[name=\"generationMode\"][value=\"local\"])"
+        },
+        {
+          "action": "click",
+          "selector": "#sourceConfirmed"
+        },
+        {
+          "action": "click",
+          "selector": "#generateBtn"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "assertVisible",
+          "selector": ".editor-workspace"
+        }
+      ]
+    },
+    {
+      "id": "ACTIVA-MANUAL",
+      "name": "Manuál je dostupný offline",
+      "type": "browser",
+      "url": "/manual/index.html",
+      "expectedText": "39 typů aktivit",
+      "steps": [
+        {
+          "action": "assertVisible",
+          "selector": "#manualSearch"
+        }
+      ]
+    },
+    {
+      "id": "ACTIVA-TESTS",
+      "name": "Interní testovací centrum",
+      "type": "browser",
+      "url": "/tests/index.html",
+      "expectedText": "Interní testovací centrum",
+      "steps": [
+        {
+          "action": "assertVisible",
+          "selector": "#runBtn"
+        }
+      ]
+    },
+    {
+      "id": "ACTIVA-CACHE-ISOLATION",
+      "name": "Service worker nemaže cizí cache",
+      "type": "static",
+      "assertions": [
+        {
+          "file": "src/sw.js",
+          "regex": "startsWith\\(CACHE_PREFIX\\)",
+          "message": "Aktivace service workeru není omezena na vlastní prefix."
+        }
+      ]
+    },
+    {
+      "id": "ACTIVA-SERVER-OFF",
+      "name": "Server je bezpečně vypnutý",
+      "type": "static",
+      "assertions": [
+        {
+          "file": "src/js/35-persistence-adapter.js",
+          "regex": "enabled:false",
+          "message": "Bezserverové vydání nemá vypnutý serverový konektor."
+        }
+      ]
+    }
   ]
 }

@@ -360,11 +360,23 @@ async function runVisualCase(scenario, viewport) {
         route.fulfill({
           status: 200,
           contentType: "text/javascript",
+          headers: {
+            "access-control-allow-origin": "*",
+            "cache-control": "no-store",
+          },
           body: guardJs,
         }),
       );
       await page.route("**/AI-Studio-GHRAB/access/access-gate.css", (route) =>
-        route.fulfill({ status: 200, contentType: "text/css", body: "" }),
+        route.fulfill({
+          status: 200,
+          contentType: "text/css",
+          headers: {
+            "access-control-allow-origin": "*",
+            "cache-control": "no-store",
+          },
+          body: "",
+        }),
       );
 
       if (scenario.id === "studio-home") {
@@ -377,8 +389,7 @@ async function runVisualCase(scenario, viewport) {
           { version: manifest.version },
         );
       }
-      const targetUrl = baseUrl + (scenario.url.startsWith("/") ? scenario.url : `/${scenario.url}`);
-      await page.goto(targetUrl, { waitUntil: "load", timeout: 20000 });
+      await setLocalDocument(page, serveRoot, scenario.url, baseUrl);
       for (const step of scenario.steps || []) {
         if (step.action === "wait") await page.waitForTimeout(step.ms || 500);
         if (step.action === "click") {
@@ -453,8 +464,14 @@ async function runVisualCase(scenario, viewport) {
           `screenshot je pravděpodobně prázdný (sd=${pixels.sd.toFixed(2)})`,
         );
       }
-      if (consoleErrors.length)
-        problems.push(`console.error (${consoleErrors.length})`);
+      if (consoleErrors.length) {
+        const firstConsoleError = String(consoleErrors[0] || "")
+          .replace(/\s+/g, " ")
+          .slice(0, 220);
+        problems.push(
+          `console.error (${consoleErrors.length})${firstConsoleError ? `: ${firstConsoleError}` : ""}`,
+        );
+      }
       if (pageErrors.length) problems.push(`pageerror (${pageErrors.length})`);
       if (badResponses.length)
         problems.push(`lokální HTTP chyba (${badResponses.length})`);
