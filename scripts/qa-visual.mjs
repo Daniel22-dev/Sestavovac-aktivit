@@ -377,7 +377,8 @@ async function runVisualCase(scenario, viewport) {
           { version: manifest.version },
         );
       }
-      await setLocalDocument(page, serveRoot, scenario.url, baseUrl);
+      const targetUrl = baseUrl + (scenario.url.startsWith("/") ? scenario.url : `/${scenario.url}`);
+      await page.goto(targetUrl, { waitUntil: "load", timeout: 20000 });
       for (const step of scenario.steps || []) {
         if (step.action === "wait") await page.waitForTimeout(step.ms || 500);
         if (step.action === "click") {
@@ -580,6 +581,6 @@ console.log(
   `VISUAL ${result.status}: ${findings.length} nálezů, ${matrix.length} běhů`,
 );
 for (const item of findings) {
-  console.log(`VISUAL FINDING [${item.code}]: ${item.summary}`);
+  console.log(`VISUAL FINDING [${item.code}]: ${item.message}`);
 }
 process.exit(result.status === "FAIL" ? 1 : 0);

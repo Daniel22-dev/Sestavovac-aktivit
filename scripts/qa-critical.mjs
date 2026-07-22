@@ -100,12 +100,7 @@ try {
         );
         const url =
           baseUrl + (flow.url.startsWith("/") ? flow.url : `/${flow.url}`);
-        await setLocalDocument(
-          page,
-          path.join(ROOT, manifest.serveRoot || "dist"),
-          flow.url,
-          baseUrl,
-        );
+        await page.goto(url, { waitUntil: "load", timeout: 20000 });
         for (const step of flow.steps || []) {
           if (step.action === "wait") await page.waitForTimeout(step.ms || 500);
           if (step.action === "click")
