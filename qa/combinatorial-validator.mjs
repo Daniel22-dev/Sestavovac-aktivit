@@ -1,0 +1,2 @@
+const allowed={level:new Set(['support','standard','extension']),variant:new Set(['A','B','C']),output:new Set(['worksheet','answers','complete']),layout:new Set(['compact','standard','spacious']),subjectPack:new Set(['universal','languages','stem','science','humanities','geography','informatics'])};
+export async function validateScenario(s){for(const[k,v]of Object.entries(s)){if(!allowed[k]?.has(v))return{pass:false,message:`Neplatná hodnota ${k}=${v}`}}return{pass:true,evidence:`${s.subjectPack}/${s.level}/${s.variant}/${s.output}/${s.layout}`}}

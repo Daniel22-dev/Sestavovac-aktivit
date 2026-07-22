@@ -1,0 +1,8 @@
+{
+  "scenarios": [
+    {"id":"activa-home","name":"Originální redakční studio","url":"/index.html","expectedText":"Vložte učivo","mustVisible":[".activa-mark","#sourceText"],"viewports":[{"width":360,"height":800},{"width":768,"height":1024},{"width":1366,"height":768},{"width":1920,"height":1080}],"steps":[{"action":"wait","ms":500}]},
+    {"id":"activa-activities","name":"Výběr aktivit","url":"/index.html","expectedText":"Vyberte skladbu","mustVisible":["#activityGrid"],"viewports":[{"width":412,"height":915},{"width":1366,"height":768}],"steps":[{"action":"click","selector":"#loadDemoBtn"},{"action":"click","selector":"[data-next=\"activities\"]"},{"action":"wait","ms":250}]},
+    {"id":"activa-manual","name":"Úplný manuál","url":"/manual/index.html","expectedText":"Od učiva k profesionálnímu materiálu","mustVisible":["#manualSearch"],"viewports":[{"width":360,"height":800},{"width":1366,"height":768}]},
+    {"id":"activa-tests","name":"Interní testovací centrum","url":"/tests/index.html","expectedText":"Ověření přímo v prohlížeči","mustVisible":["#runBtn"],"viewports":[{"width":412,"height":915},{"width":1920,"height":1080}]}
+  ]
+}

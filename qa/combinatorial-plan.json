@@ -1,0 +1,16 @@
+{
+  "parameters": {
+    "level": ["support","standard","extension"],
+    "variant": ["A","B","C"],
+    "output": ["worksheet","answers","complete"],
+    "layout": ["compact","standard","spacious"],
+    "subjectPack": ["universal","languages","stem","science","humanities","geography","informatics"]
+  },
+  "criticalTriples": [
+    {"level":"support","variant":"A","output":"worksheet"},
+    {"level":"extension","variant":"C","output":"complete"}
+  ],
+  "fixedScenarios": [{"level":"standard","variant":"A","output":"complete","layout":"standard","subjectPack":"universal"}],
+  "validator": "qa/combinatorial-validator.mjs",
+  "limitations": ["Párová matice ověřuje kompatibilitu voleb; obsahovou správnost každého pracovního listu potvrzuje učitel."]
+}

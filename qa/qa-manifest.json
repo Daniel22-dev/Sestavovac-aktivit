@@ -1,0 +1,41 @@
+{
+  "standard": "GHRAB-QA-1.0.2",
+  "appId": "activity-builder",
+  "appName": "ACTIVA – Sestavovač aktivit",
+  "appVersion": "0.5.0",
+  "entryPoint": "dist/index.html",
+  "serveRoot": "dist",
+  "buildRoot": "dist",
+  "installCommand": "npm ci --no-fund",
+  "buildCommand": "npm run build",
+  "testCommand": "npm test",
+  "headlessCommand": "npm run test:headless",
+  "auditCommand": "npm audit --audit-level=high",
+  "features": {
+    "pwa": true,
+    "ai": true,
+    "centralAccessGuard": true,
+    "fileExport": true,
+    "studentRuntime": true,
+    "teacherRuntime": true,
+    "localStorage": true,
+    "serviceWorker": true
+  },
+  "requiredViewports": [
+    {"width":360,"height":800},{"width":412,"height":915},{"width":768,"height":1024},{"width":1366,"height":768},{"width":1920,"height":1080}
+  ],
+  "versionChecks": [
+    {"file":"package.json","regex":"\\\"version\\\"\\s*:\\s*\\\"([0-9.]+)\\\"","expected":"0.5.0"},
+    {"file":"dist/studio-manifest.json","regex":"\\\"version\\\"\\s*:\\s*\\\"([0-9.]+)\\\"","expected":"0.5.0"},
+    {"file":"dist/sw.js","regex":"activa-v([0-9.]+)","expected":"0.5.0"}
+  ],
+  "pwaTargets": [
+    {"id":"activity-builder","root":"dist","manifest":"manifest.webmanifest","serviceWorker":"sw.js","cachePrefix":"activa-v"}
+  ],
+  "security": {
+    "allowedEmails": ["balaz@ghrabuvka.cz"],
+    "requiresCsvFormulaProtection": true,
+    "validator": "qa/security-validator.mjs"
+  },
+  "compatibility": {"runtimeSourceRoots":["src"],"disallowRegexLookbehind":true}
+}
