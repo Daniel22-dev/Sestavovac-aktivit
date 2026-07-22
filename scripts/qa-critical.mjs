@@ -92,11 +92,23 @@ try {
           r.fulfill({
             status: 200,
             contentType: "text/javascript",
+            headers: {
+              "access-control-allow-origin": "*",
+              "cache-control": "no-store",
+            },
             body: guardJs,
           }),
         );
         await page.route("**/AI-Studio-GHRAB/access/access-gate.css", (r) =>
-          r.fulfill({ status: 200, contentType: "text/css", body: "" }),
+          r.fulfill({
+            status: 200,
+            contentType: "text/css",
+            headers: {
+              "access-control-allow-origin": "*",
+              "cache-control": "no-store",
+            },
+            body: "",
+          }),
         );
         const url =
           baseUrl + (flow.url.startsWith("/") ? flow.url : `/${flow.url}`);
@@ -191,4 +203,9 @@ await writeFile(
 console.log(
   `CRITICAL ${result.status}: ${findings.length} nálezů, ${matrix.length} workflow`,
 );
+for (const item of findings) {
+  console.log(
+    `CRITICAL FINDING [${item.code}]: ${item.message}${item.evidence ? ` | ${item.evidence}` : ""}`,
+  );
+}
 if (result.status === "FAIL") process.exitCode = 1;
