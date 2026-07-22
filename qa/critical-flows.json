@@ -5,7 +5,7 @@
       "name": "Místní tvorba bez serveru",
       "type": "browser",
       "url": "/index.html",
-      "expectedText": "Vložte učivo",
+      "expectedText": "Náhled A4",
       "steps": [
         {
           "action": "click",
