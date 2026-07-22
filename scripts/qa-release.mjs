@@ -103,7 +103,16 @@ if (auditCommand) {
     }
   }
 }
-await saveGate(gateResult("project", projectFindings, { commands }));
+const projectGate = gateResult("project", projectFindings, { commands });
+await saveGate(projectGate);
+console.log(
+  `PROJECT ${projectGate.status}: ${projectFindings.length} nálezů, ${commands.length} příkazů`,
+);
+for (const item of projectFindings) {
+  console.log(
+    `PROJECT FINDING [${item.code}]: ${item.message}${item.evidence ? ` | ${item.evidence}` : ""}`,
+  );
+}
 
 for (const gate of REQUIRED_GATES) {
   const script = `qa-${gate}.mjs`;

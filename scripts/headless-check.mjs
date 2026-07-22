@@ -1,2 +1,98 @@
-import {chromium} from 'playwright';import {existsSync} from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';import {startStaticServer} from './qa-core.mjs';
-const ROOT=path.join(path.dirname(fileURLToPath(import.meta.url)),'..');const {server,baseUrl}=await startStaticServer(path.join(ROOT,'dist'));let executablePath=process.env.GHRAB_CHROMIUM_PATH||'';if(!executablePath){for(const p of [chromium.executablePath(),'/usr/bin/chromium','/usr/bin/google-chrome'])if(p&&existsSync(p)){executablePath=p;break}}let browser;try{browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});const page=await browser.newPage();await page.route('**/AI-Studio-GHRAB/access/app-guard.js',r=>r.fulfill({contentType:'text/javascript',body:"export async function protectApp(){document.documentElement.dataset.ghrabAccess='granted';return true}"}));await page.route('**/AI-Studio-GHRAB/access/access-gate.css',r=>r.fulfill({contentType:'text/css',body:''}));const errors=[];page.on('pageerror',e=>errors.push(String(e)));await page.goto(baseUrl+'/index.html');await page.click('#loadDemoBtn');await page.click('[data-next="activities"]');await page.click('[data-next="generate"]');await page.click('#generateLocalBtn');await page.waitForSelector('.editor-workspace',{timeout:10000});await page.goto(baseUrl+'/manual/index.html');await page.waitForSelector('#manualSearch');await page.goto(baseUrl+'/tests/index.html');await page.waitForSelector('#runBtn');if(errors.length)throw new Error(errors.join('\n'));console.log('[headless] Hlavní workflow, manuál a testovací centrum prošly.')}finally{if(browser)await browser.close();server.close()}
+import { existsSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { chromium } from "playwright";
+import { startStaticServer } from "./qa-core.mjs";
+
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+const { server, baseUrl } = await startStaticServer(path.join(ROOT, "dist"));
+
+let executablePath = process.env.GHRAB_CHROMIUM_PATH || "";
+if (!executablePath) {
+  for (const candidate of [
+    chromium.executablePath(),
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
+    "/usr/bin/google-chrome",
+  ]) {
+    if (candidate && existsSync(candidate)) {
+      executablePath = candidate;
+      break;
+    }
+  }
+}
+
+const guardJs = `export async function protectApp(appId){document.documentElement.dataset.ghrabAccess='granted';document.dispatchEvent(new CustomEvent('ghrab:app-access-granted',{detail:{permit:{appId,qa:true}}}));return true}`;
+let browser;
+try {
+  browser = await chromium.launch({
+    headless: true,
+    ...(executablePath ? { executablePath } : {}),
+    args: ["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"],
+  });
+
+  const context = await browser.newContext({
+    viewport: { width: 1366, height: 768 },
+  });
+  const page = await context.newPage();
+  const errors = [];
+
+  page.on("pageerror", (error) => errors.push(String(error)));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+
+  await page.route("**/AI-Studio-GHRAB/access/app-guard.js", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "text/javascript",
+      headers: {
+        "access-control-allow-origin": "*",
+        "cache-control": "no-store",
+      },
+      body: guardJs,
+    }),
+  );
+  await page.route("**/AI-Studio-GHRAB/access/access-gate.css", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "text/css",
+      headers: {
+        "access-control-allow-origin": "*",
+        "cache-control": "no-store",
+      },
+      body: "",
+    }),
+  );
+
+  await page.goto(`${baseUrl}/index.html`, { waitUntil: "domcontentloaded" });
+  await page.locator("#loadDemoBtn").click();
+  await page.locator('[data-next="activities"]').click();
+  await page.locator('[data-next="generate"]').click();
+  await page
+    .locator('label.choice-card:has(input[name="generationMode"][value="local"])')
+    .click();
+  await page.locator("#sourceConfirmed").click();
+  await page.locator("#generateBtn").click();
+  await page.waitForSelector(".editor-workspace", { timeout: 10000 });
+
+  await page.goto(`${baseUrl}/manual/index.html`, {
+    waitUntil: "domcontentloaded",
+  });
+  await page.waitForSelector("#manualSearch", { timeout: 10000 });
+
+  await page.goto(`${baseUrl}/tests/index.html`, {
+    waitUntil: "domcontentloaded",
+  });
+  await page.waitForSelector("#runBtn", { timeout: 10000 });
+
+  if (errors.length) throw new Error(errors.join("\n"));
+  console.log("[headless] Hlavní workflow, manuál a testovací centrum prošly.");
+  await context.close();
+} finally {
+  if (browser) await browser.close().catch(() => {});
+  await Promise.race([
+    new Promise((resolve) => server.close(resolve)),
+    new Promise((resolve) => setTimeout(resolve, 2000)),
+  ]);
+}
