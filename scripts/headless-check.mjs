@@ -37,9 +37,16 @@ try {
   const page = await context.newPage();
   const errors = [];
 
+  const isIgnorableMetaFrameAncestorsWarning = (message) =>
+    message.includes("Content Security Policy directive 'frame-ancestors'") &&
+    message.includes("ignored when delivered via a <meta> element");
+
   page.on("pageerror", (error) => errors.push(String(error)));
   page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+    if (message.type() !== "error") return;
+    const text = message.text();
+    if (isIgnorableMetaFrameAncestorsWarning(text)) return;
+    errors.push(text);
   });
 
   await page.route("**/AI-Studio-GHRAB/access/app-guard.js", (route) =>
