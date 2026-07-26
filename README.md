@@ -1,6 +1,6 @@
 # ACTIVA – Sestavovač aktivit
 
-**Verze: 0.5.0 · produkční kandidát · bezserverový provoz**
+**Verze: 0.5.1 · produkční kandidát · bezserverový provoz**
 
 ACTIVA je originální prémiové redakční studio v ekosystému AI Studio GHRAB. Z učiva připraví tisknutelné pracovní listy, řešení, varianty A/B/C, tři úrovně diferenciace, skupinové sady, projekci bez telefonů a přenosné interaktivní HTML.
 
@@ -13,7 +13,7 @@ ACTIVA je originální prémiové redakční studio v ekosystému AI Studio GHRA
 - GHRAB QA 1.0.2,
 - místní knihovna a zálohování,
 - úložný adaptér připravený na budoucí školní server; server je v této verzi vypnutý,
-- manifest a Access Guard pro AI Studio GHRAB 0.18.3+.
+- manifest a Access Guard pro AI Studio GHRAB 0.18.5+.
 
 ## Vývoj
 

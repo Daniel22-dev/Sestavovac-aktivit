@@ -222,14 +222,6 @@ async function saveCurrentProjectToLibrary(meta = {}) {
   });
   await libraryDbPut(entry);
   await refreshPersonalLibrary();
-  try {
-    window.GHRABTelemetry?.recordOutput({
-      outputKind: 'library-save', attemptedQuantity: 1, successfulQuantity: 1,
-      failedQuantity: 0, outcome: 'success'
-    });
-  } catch (error) {
-    console.warn('ACTIVA telemetry failed', error);
-  }
   return entry;
 }
 async function deleteLibraryEntry(id) {
@@ -286,17 +278,6 @@ function recordPresentationSession(summary) {
     createdAt: summary.createdAt || nowIso()
   });
   saveSessionHistory(history);
-  try {
-    window.GHRABTelemetry?.recordOutput({
-      outputKind: 'presentation-session',
-      attemptedQuantity: summary.slidesVisited || 1,
-      successfulQuantity: summary.slidesVisited || 1,
-      failedQuantity: 0,
-      outcome: 'success'
-    });
-  } catch (error) {
-    console.warn('ACTIVA telemetry failed', error);
-  }
 }
 
 function libraryStats() {

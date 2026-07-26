@@ -72,7 +72,7 @@ for (const entry of school.materials) {
   if (entry.schema !== 'activa-library-entry-v1' || entry.project?.schema !== 'activa-project-v1') failures.push(`Neplatný záznam školní knihovny ${entry.id}.`);
 }
 const allJs = readdirSync(join(ROOT, 'src/js')).filter((name) => name.endsWith('.js')).map((name) => readFileSync(join(ROOT, 'src/js', name), 'utf8')).join('\n');
-for (const marker of ['presentation-session','library-save','share-package','interactive-html','IndexedDB','standaloneInteractiveHtml']) {
+for (const marker of ['recordPresentationSession','saveCurrentProjectToLibrary','exportSharePackage','exportStandaloneInteractive','IndexedDB','standaloneInteractiveHtml']) {
   if (!allJs.includes(marker)) failures.push(`Chybí funkce/marker ${marker}.`);
 }
 if (failures.length) {

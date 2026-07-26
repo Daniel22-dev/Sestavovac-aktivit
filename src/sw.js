@@ -1,5 +1,5 @@
 const CACHE_PREFIX='activa-v';
-const CACHE='activa-v0.5.0';
+const CACHE='activa-v0.5.1';
 const PRECACHE=['./','./index.html','./manifest.webmanifest','./assets/school-logo.png','./assets/activity-builder-icon.svg','./icons/icon-192.png','./icons/icon-512.png','./manual/','./tests/','./school-library/library.json'];
 self.addEventListener('install',(event)=>event.waitUntil((async()=>{const cache=await caches.open(CACHE);for(const asset of PRECACHE){const response=await fetch(asset,{cache:'reload'});if(!response.ok)throw new Error(`ACTIVA precache selhal: ${asset} (${response.status})`);await cache.put(asset,response)}await self.skipWaiting()})()));
 self.addEventListener('activate',(event)=>event.waitUntil(caches.keys().then((keys)=>Promise.all(keys.filter((key)=>key.startsWith(CACHE_PREFIX)&&key!==CACHE).map((key)=>caches.delete(key)))).then(()=>self.clients.claim())));

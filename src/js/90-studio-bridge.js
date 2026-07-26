@@ -1,3 +1,7 @@
+function recordActivityPack(outcome='success',detail={}){
+  const success=outcome==='success',failure=outcome==='error',cancelled=outcome==='cancelled';
+  try{return window.GHRABTelemetry?.recordOutput({outputKind:'activity-pack',attemptedQuantity:1,successfulQuantity:success?1:0,failedQuantity:failure?1:0,cancelledQuantity:cancelled?1:0,outcome,metadata:detail})??false}catch(error){console.warn('ACTIVA telemetry failed',error);return false}
+}
 (function(){
   const HANDOFF_KEY='ghrab.handoff.v1';
   function read(){try{return JSON.parse(storageOf('localStorage')?.getItem(HANDOFF_KEY)||'null')}catch(_){return null}}

@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import vm from 'node:vm';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
@@ -19,6 +20,14 @@ for (const type of ['matching','sorting','ordering','gapfill','truefalse','multi
   if (!joined.includes(type)) errors.push(`Chybí modul aktivity ${type}`);
 }
 if (!joined.includes('GHRABTelemetry')) errors.push('Chybí telemetrie AI Studia.');
+const telemetryCalls = [];
+const telemetryContext = { console, location: { search: '' }, window: { addEventListener() {}, GHRABTelemetry: { recordOutput(payload) { telemetryCalls.push(payload); return true; } } } };
+vm.createContext(telemetryContext);
+vm.runInContext(readFileSync(join(jsDir, '90-studio-bridge.js'), 'utf8'), telemetryContext);
+vm.runInContext("recordActivityPack('success',{source:'qa'});recordActivityPack('error',{source:'qa'});", telemetryContext);
+if (telemetryCalls.length !== 2 || telemetryCalls[0]?.outputKind !== 'activity-pack' || telemetryCalls[0]?.successfulQuantity !== 1 || telemetryCalls[1]?.failedQuantity !== 1) errors.push('ACTIVA telemetrie neposílá správný activity-pack pro úspěch a chybu.');
+if (!joined.includes("outputKind:'activity-pack'")) errors.push('ACTIVA neposílá povolený typ activity-pack.');
+for (const invalidKind of ['worksheet-package','share-package','interactive-html','pdf-export','library-save','presentation-session']) if (joined.includes(`outputKind:'${invalidKind}'`)) errors.push(`ACTIVA používá nepovolený typ výstupu ${invalidKind}.`);
 if (!joined.includes('window.print')) errors.push('Chybí tiskový/PDF workflow.');
 if (!joined.includes('SUBJECT_PACKS')) errors.push('Chybí předmětové balíčky.');
 if (!joined.includes('differentiateActivity')) errors.push('Chybí diferenciační modul.');
