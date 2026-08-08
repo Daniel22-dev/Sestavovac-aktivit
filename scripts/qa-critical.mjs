@@ -129,6 +129,15 @@ try {
           flow.url,
           baseUrl,
         );
+        await page.waitForFunction(
+          () => document.documentElement.dataset.ghrabAccess !== "checking",
+          null,
+          { timeout: 7000 },
+        );
+        const accessState = await page.locator("html").getAttribute("data-ghrab-access");
+        if (accessState === "denied") {
+          throw new Error("Přístupový bootstrap skončil stavem denied.");
+        }
         for (const step of flow.steps || []) {
           if (step.action === "wait") await page.waitForTimeout(step.ms || 500);
           if (step.action === "click")

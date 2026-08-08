@@ -71,6 +71,16 @@ try {
       body: "",
     }),
   );
+  await page.route("**/AI-Studio-GHRAB/config/support.json", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ administratorEmail: "balaz@ghrabuvka.cz" }),
+    }),
+  );
+  await page.route("**/AI-Studio-GHRAB/config/apps.generated.json", (route) =>
+    route.fulfill({ status: 200, contentType: "application/json", body: "[]" }),
+  );
 
   await page.goto(`${baseUrl}/index.html`, { waitUntil: "domcontentloaded" });
   await page.locator("#loadDemoBtn").click();
