@@ -2,7 +2,7 @@
   "standard": "GHRAB-QA-1.0.2",
   "appId": "activity-builder",
   "appName": "ACTIVA – Sestavovač aktivit",
-  "appVersion": "0.5.1",
+  "appVersion": "0.5.9",
   "entryPoint": "dist/index.html",
   "serveRoot": "dist",
   "buildRoot": "dist",
@@ -10,7 +10,7 @@
   "buildCommand": "npm run build",
   "testCommand": "npm test",
   "headlessCommand": "npm run test:headless",
-  "auditCommand": "npm audit --audit-level=high",
+  "auditCommand": "npm audit --omit=dev --audit-level=high",
   "features": {
     "pwa": true,
     "ai": true,
@@ -47,17 +47,17 @@
     {
       "file": "package.json",
       "regex": "\\\"version\\\"\\s*:\\s*\\\"([0-9.]+)\\\"",
-      "expected": "0.5.1"
+      "expected": "0.5.9"
     },
     {
       "file": "dist/studio-manifest.json",
       "regex": "\\\"version\\\"\\s*:\\s*\\\"([0-9.]+)\\\"",
-      "expected": "0.5.1"
+      "expected": "0.5.9"
     },
     {
       "file": "dist/sw.js",
-      "regex": "activa-v([0-9.]+)",
-      "expected": "0.5.1"
+      "regex": "ghrab-activity-builder-v([0-9.]+)",
+      "expected": "0.5.9"
     }
   ],
   "pwaTargets": [
@@ -66,7 +66,7 @@
       "root": "dist",
       "manifest": "manifest.webmanifest",
       "serviceWorker": "sw.js",
-      "cachePrefix": "activa-v"
+      "cachePrefix": "ghrab-activity-builder-v"
     }
   ],
   "security": {
@@ -81,5 +81,6 @@
       "src"
     ],
     "disallowRegexLookbehind": true
-  }
+  },
+  "deploymentBasePath": "/Sestavovac-aktivit/"
 }

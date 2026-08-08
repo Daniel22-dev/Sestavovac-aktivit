@@ -6,7 +6,7 @@
         <span class="brand-eyebrow">AI STUDIO GHRAB · TVŮRČÍ EDICE</span>
         <div class="brand-line"><strong>ACTIVA</strong><span>Redakční studio výukových materiálů</span></div>
       </div>
-      <img src="./assets/school-logo.png" alt="Logo Gymnázia, Ostrava-Hrabůvka" class="school-logo">
+      <img src="./assets/brand/school-logo.png" alt="Logo Gymnázia, Ostrava-Hrabůvka" class="school-logo">
     </div>
     <div class="top-actions">
       <span class="save-state" id="saveState"><i></i> Uloženo</span>
@@ -16,7 +16,7 @@
       <button class="icon-btn" id="fullscreenBtn" type="button" title="Celá obrazovka" aria-label="Celá obrazovka">⛶</button>
       <button class="top-library-btn" id="libraryOpenBtn" type="button"><span>◇</span>Knihovna</button>
       <button class="api-pill" id="apiOpenBtn" type="button"><span class="api-dot"></span><span id="apiPillText">AI klíč nezadán</span></button>
-      <a class="studio-link" href="/AI-Studio-GHRAB/">Zpět do Studia</a>
+      <a class="studio-link" href="/AI-Studio-GHRAB/" data-ghrab-studio-link>Zpět do Studia</a>
     </div>
   </header>
 
@@ -172,18 +172,18 @@
   </main>
 </div>
 
-<div class="modal-layer" id="apiModal" aria-hidden="true">
+<div class="modal-layer" id="apiModal" aria-hidden="true" inert>
   <div class="modal-card api-modal-card" role="dialog" aria-modal="true" aria-labelledby="apiModalTitle">
     <button class="modal-close" data-close="apiModal" type="button">×</button>
     <span class="modal-kicker">AI NASTAVENÍ</span><h2 id="apiModalTitle">Osobní Gemini API klíč</h2><p>Klíč se posílá pouze službě Google Gemini. Na sdíleném školním počítači jej ukládejte jen pro relaci.</p>
     <label><span>API klíč</span><input id="apiKeyInput" type="password" placeholder="AIza…" autocomplete="off" spellcheck="false"></label>
-    <div class="api-key-actions"><button id="saveSessionKeyBtn" class="primary-action compact" type="button">Použít pro relaci</button><button id="savePermanentKeyBtn" class="secondary-action compact" type="button">Uložit na osobním zařízení</button><button id="clearKeyBtn" class="text-btn danger-text" type="button">Smazat</button></div>
+    <div class="api-key-actions"><button id="saveSessionKeyBtn" class="primary-action compact" type="button">Použít pro relaci</button><button id="savePermanentKeyBtn" class="secondary-action compact" type="button">Použít bezpečně jen pro relaci</button><button id="clearKeyBtn" class="text-btn danger-text" type="button">Smazat</button></div>
     <div class="model-select-block"><span>Režim modelu</span><div class="model-cards"><button class="model-card active" data-model="gemini-3.6-flash" type="button"><b>Doporučený</b><small>gemini-3.6-flash</small></button><button class="model-card" data-model="gemini-3.5-flash-lite" type="button"><b>Úsporný</b><small>gemini-3.5-flash-lite</small></button></div></div>
     <p class="modal-note">Každý kolega používá vlastní klíč. Klíč nikdy nevkládejte do zdrojového kódu ani na GitHub.</p>
   </div>
 </div>
 
-<div class="modal-layer" id="exportModal" aria-hidden="true">
+<div class="modal-layer" id="exportModal" aria-hidden="true" inert>
   <div class="modal-card export-modal-card" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle">
     <button class="modal-close" data-close="exportModal" type="button">×</button>
     <span class="modal-kicker">TISKOVÉ STUDIO</span><h2 id="exportModalTitle">Připravit PDF</h2>
@@ -204,7 +204,7 @@
   </div>
 </div>
 
-<div class="modal-layer" id="diffAuditModal" aria-hidden="true">
+<div class="modal-layer" id="diffAuditModal" aria-hidden="true" inert>
   <div class="modal-card diff-audit-modal" role="dialog" aria-modal="true" aria-labelledby="diffAuditModalTitle">
     <button class="modal-close" data-close="diffAuditModal" type="button">×</button>
     <span class="modal-kicker">DIFERENCIAČNÍ KONTROLA</span><h2 id="diffAuditModalTitle">Srovnatelnost pracovních listů</h2><p>Kontrola sleduje zachování společného cíle, pořadí úrovní a přiměřený rozsah.</p>
@@ -212,7 +212,7 @@
   </div>
 </div>
 
-<div class="modal-layer" id="diagnosticsModal" aria-hidden="true">
+<div class="modal-layer" id="diagnosticsModal" aria-hidden="true" inert>
   <div class="modal-card diagnostics-card" role="dialog" aria-modal="true" aria-labelledby="diagnosticsTitle">
     <button class="modal-close" data-close="diagnosticsModal" type="button">×</button>
     <span class="modal-kicker">SPRÁVCE A PODPORA</span><h2 id="diagnosticsTitle">Technický protokol</h2><p>Protokol neobsahuje zdrojový text ani API klíč.</p>
@@ -222,7 +222,7 @@
 </div>
 
 
-<div class="modal-layer library-layer" id="libraryModal" aria-hidden="true">
+<div class="modal-layer library-layer" id="libraryModal" aria-hidden="true" inert>
   <div class="modal-card library-modal-card" role="dialog" aria-modal="true" aria-labelledby="libraryModalTitle">
     <button class="modal-close" data-close="libraryModal" type="button">×</button>
     <div class="library-header">
@@ -251,10 +251,10 @@
   </div>
 </div>
 
-<div class="modal-layer presentation-layer" id="presentationModal" aria-hidden="true">
+<div class="modal-layer presentation-layer" id="presentationModal" aria-hidden="true" inert>
   <div class="presentation-shell" role="dialog" aria-modal="true" aria-labelledby="presentationTitle">
     <header class="presentation-topbar">
-      <div class="presentation-brand"><img src="./assets/school-logo.png" alt="Logo školy"><div><span>ACTIVA · PROJEKČNÍ REŽIM</span><b id="presentationTitle">Interaktivní lekce</b></div></div>
+      <div class="presentation-brand"><img src="./assets/brand/school-logo.png" alt="Logo školy"><div><span>ACTIVA · PROJEKČNÍ REŽIM</span><b id="presentationTitle">Interaktivní lekce</b></div></div>
       <div class="presentation-top-actions"><div class="presentation-timer" id="presentationTimer">01:00</div><button id="presentationFullscreenBtn" type="button">⛶ Celá obrazovka</button><button class="danger" id="presentationEndBtn" type="button">Ukončit lekci</button></div>
     </header>
     <div class="presentation-progress"><i id="presentationProgressBar"></i></div>
@@ -271,7 +271,7 @@
   </div>
 </div>
 
-<div class="modal-layer" id="sessionSummaryModal" aria-hidden="true">
+<div class="modal-layer" id="sessionSummaryModal" aria-hidden="true" inert>
   <div class="modal-card session-summary-card" role="dialog" aria-modal="true" aria-labelledby="sessionSummaryTitle">
     <button class="modal-close" data-close="sessionSummaryModal" type="button">×</button>
     <span class="modal-kicker">SOUHRN LEKCE</span><h2 id="sessionSummaryTitle">Výsledky projekčního režimu</h2>
@@ -280,7 +280,7 @@
   </div>
 </div>
 
-<div class="modal-layer" id="shareModal" aria-hidden="true">
+<div class="modal-layer" id="shareModal" aria-hidden="true" inert>
   <div class="modal-card share-modal-card" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
     <button class="modal-close" data-close="shareModal" type="button">×</button>
     <span class="modal-kicker">SDÍLENÍ A INTERAKTIVNÍ VÝSTUP</span><h2 id="shareModalTitle">Předat materiál kolegovi nebo žákům</h2>

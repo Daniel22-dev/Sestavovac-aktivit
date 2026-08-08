@@ -306,16 +306,18 @@ function libraryStats() {
   };
 }
 
-function exportLibraryBundle() {
+async function exportLibraryBundle() {
   const data = {
     schema: 'activa-library-bundle-v1', version: ACTIVA_VERSION,
     exportedAt: nowIso(), materials: App.library.personal
   };
-  downloadText(
-    `ACTIVA-knihovna-${new Date().toISOString().slice(0, 10)}.json`,
-    JSON.stringify(data, null, 2)
-  );
-  toast('Osobní knihovna byla exportována.', 'success');
+  try {
+    await downloadGhrabArtifact(`ACTIVA-knihovna-${new Date().toISOString().slice(0, 10)}.json`, data, 'activa-library', 'restricted');
+    toast('Osobní knihovna byla exportována.', 'success');
+  } catch (error) {
+    captureError(error, 'library-export');
+    toast('Osobní knihovnu se nepodařilo exportovat.', 'error');
+  }
 }
 
 async function importLibraryBundle(data) {

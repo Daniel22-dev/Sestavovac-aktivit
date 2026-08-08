@@ -56,15 +56,15 @@
 @media(max-width:850px){.top-library-btn{font-size:0;width:40px;padding:0;justify-content:center}.top-library-btn span{font-size:16px}.library-modal-card{padding:20px}.library-header,.library-toolbar{flex-direction:column;align-items:stretch}.library-header-actions{justify-content:flex-start}.library-stats{grid-template-columns:1fr 1fr}.library-save-grid{grid-template-columns:1fr}.library-save-grid .full{grid-column:auto}.library-filters{min-width:0;width:100%;flex-direction:column}.library-filters select{width:100%}.library-grid{grid-template-columns:1fr}.presentation-main{grid-template-columns:1fr}.presentation-console{display:none}.presentation-shell{grid-template-rows:64px 4px 1fr 66px}.presentation-top-actions button:not(.danger){display:none}.presentation-controls button{min-width:0;flex:1}.share-option-grid{grid-template-columns:1fr}.share-import{grid-template-columns:1fr}.session-stat-grid{grid-template-columns:1fr 1fr}}
 @media print{.library-layer,.presentation-layer,#sessionSummaryModal,#shareModal{display:none!important}}
 
-/* ========================================================================== 
-   ACTIVA 0.5.1 · EDITORIAL DESIGN SYSTEM
+/* ==========================================================================
+   ACTIVA 0.5.9 · EDITORIAL DESIGN SYSTEM
    Originální světlé redakční studio. Záměrně nepoužívá vizuální jazyk DOMUS.
    ========================================================================== */
 :root{
   --bg:#eceff8;--bg2:#f6f4ee;--panel:#ffffff;--panel2:#f5f6fb;--line:#d9deeb;
-  --ink:#141a2a;--muted:#697187;--soft:#333c55;--gold:#3157ff;--gold2:#3157ff;
+  --ink:#141a2a;--muted:#596178;--soft:#333c55;--gold:#3157ff;--gold2:#3157ff;
   --cyan:#00a7a7;--green:#168b63;--red:#cf3f55;--amber:#c17811;--white:#fff;
-  --paper:#fff;--paperInk:#141a2a;--paperMuted:#697187;--paperLine:#d9deeb;
+  --paper:#fff;--paperInk:#141a2a;--paperMuted:#596178;--paperLine:#d9deeb;
   --coral:#ff6b5f;--violet:#6c4eff;--lime:#b4e54c;--ink-blue:#18254b;
   --shadow:0 26px 70px rgba(26,36,73,.12);--shadow-soft:0 10px 30px rgba(26,36,73,.08);
   --radius:18px;--radius-sm:10px;
@@ -105,7 +105,7 @@ body.activa-editorial::before{content:"";position:fixed;inset:0;pointer-events:n
 .flow-intro{padding:0 10px 24px}
 .edition-badge,.mini-label,.kicker,.modal-kicker,.section-label{color:#3157ff;letter-spacing:.15em}
 .flow-intro h1{font-family:var(--display);font-weight:650;color:#11182d;font-size:27px;letter-spacing:-.025em;line-height:1.08}
-.flow-intro p{color:#697187;font-size:12px}
+.flow-intro p{color:#596178;font-size:12px}
 .flow-steps{gap:5px}
 .flow-step{border-radius:8px;padding:13px 10px;grid-template-columns:31px 1fr;background:transparent}
 .flow-step span{color:#959db0;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
@@ -118,13 +118,13 @@ body.activa-editorial::before{content:"";position:fixed;inset:0;pointer-events:n
 .flow-step.done:after{color:#168b63}
 .sidebar-note{border:1px solid #ccd6f7;border-radius:10px;background:#f2f5ff;position:relative;overflow:hidden}
 .sidebar-note::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#3157ff}
-.sidebar-note b{color:#1d347f}.sidebar-note span{color:#697187}
+.sidebar-note b{color:#1d347f}.sidebar-note span{color:#596178}
 .owner-mini{color:#8991a4;border-top:1px solid #dde1ec;padding-top:14px}
 .stage{padding:35px 40px 52px;min-width:0}
 .screen{max-width:1500px}
 .screen-heading{margin-bottom:23px;align-items:center}
 .screen-heading h2,.editor-topline h2{font-family:var(--display);font-size:36px;font-weight:650;color:#11182d;letter-spacing:-.035em}
-.screen-heading p{color:#697187}
+.screen-heading p{color:#596178}
 .kicker{display:inline-flex;align-items:center;gap:8px}
 .kicker::before{content:"";width:24px;height:2px;background:var(--coral)}
 .text-btn,.context-help{color:#3157ff}
@@ -136,7 +136,7 @@ body.activa-editorial::before{content:"";position:fixed;inset:0;pointer-events:n
 .premium-card{position:relative}
 .premium-card::after{content:"";position:absolute;left:17px;right:17px;top:0;height:2px;background:linear-gradient(90deg,#3157ff,var(--coral),transparent);opacity:.72;border-radius:2px}
 .card-head h3{color:#182038}
-.counter,.selection-count{border-color:#dce1ec;background:#f7f8fb;color:#6c7488}
+.counter,.selection-count{border-color:#dce1ec;background:#f7f8fb;color:#596178}
 .source-layout{grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr)}
 .source-textarea,input,select,textarea{border-color:#d9deeb;background:#f9fafc;color:#161d31}
 .source-textarea{background:#fff;box-shadow:inset 0 1px 3px rgba(27,37,73,.045);border-radius:10px}
@@ -174,11 +174,11 @@ body.activa-editorial::before{content:"";position:fixed;inset:0;pointer-events:n
   linear-gradient(45deg,transparent 75%,rgba(49,87,255,.035) 75%),
   linear-gradient(-45deg,transparent 75%,rgba(49,87,255,.035) 75%),#e8eaf1;background-size:24px 24px;background-position:0 0,0 12px,12px -12px,-12px 0}
 .editor-help{margin-right:auto}
-.level-switch button,.variant-switch button{background:#fff;color:#697187;border-color:#dce1ec}.level-switch button.active,.variant-switch button.active{background:#3157ff;color:#fff;border-color:#3157ff}
+.level-switch button,.variant-switch button{background:#fff;color:#596178;border-color:#dce1ec}.level-switch button.active,.variant-switch button.active{background:#3157ff;color:#fff;border-color:#3157ff}
 .modal-layer{background:rgba(18,24,45,.46);backdrop-filter:blur(9px)}
 .modal-card{background:#fff;color:#161d31;border:1px solid #d9deeb;box-shadow:0 32px 90px rgba(13,22,55,.22)}
 .modal-close{background:#f2f4f8;color:#374057;border-color:#dbe0eb}
-.modal-note{color:#697187}
+.modal-note{color:#596178}
 .diagnostics-card pre{background:#11182d;color:#dfe7ff;border-color:#263458}
 .library-modal-card{background:#f8f9fc}
 .library-save-panel,.library-card,.library-stats>div{background:#fff;border-color:#dce1ec}
@@ -193,3 +193,17 @@ body.activa-editorial::before{content:"";position:fixed;inset:0;pointer-events:n
 @media(max-width:680px){.topbar{height:auto;min-height:72px;align-items:flex-start;padding:11px 12px;gap:9px}.brand-line span,.brand-eyebrow,.school-logo{display:none}.brand-line strong{font-size:20px}.activa-mark{width:42px;height:42px}.top-actions{flex-wrap:wrap;justify-content:flex-end}.api-pill,.studio-link,.top-library-btn{font-size:0;min-width:38px;padding:0 10px}.api-pill span:not(.api-dot){display:none}.studio-link::after{content:"Studio";font-size:10px}.top-library-btn span{font-size:14px}.workspace{min-height:calc(100vh - 72px)}.flow-steps{grid-template-columns:repeat(2,1fr)}.screen-heading{align-items:flex-start}.screen-heading h2,.editor-topline h2{font-size:29px}.heading-tools{align-items:flex-end;flex-direction:column}.activity-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.context-help{font-size:0;padding:7px}.context-help::after{content:"Nápověda";font-size:9px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.screen-footer{flex-wrap:wrap}.screen-footer span{width:100%}}
 @media(max-width:420px){.activity-grid{grid-template-columns:1fr}.flow-step{grid-template-columns:26px 1fr}.stage{padding:20px 12px}.premium-card{padding:17px}.brand-copy{display:none}}
 @media print{body.activa-editorial{background:#fff}.topbar,.flow-sidebar,.context-help{display:none!important}.workspace{display:block}.stage{padding:0}.screen:not(#screen-editor){display:none!important}}
+
+/* P5 R2 release-candidate accessibility hardening: AA contrast in the light editorial shell. */
+body.activa-editorial{--muted:#596178;--green:#117756}
+body.activa-editorial .brand-line span,
+body.activa-editorial .save-state,
+body.activa-editorial .flow-step span,
+body.activa-editorial .flow-step small,
+body.activa-editorial .owner-mini{color:#596178}
+body.activa-editorial .privacy-icon,
+body.activa-editorial #testsBtn{color:#117756}
+
+/* P5 R2 verified contrast hardening: preserve readable active-step text after editorial muted-color override. */
+body.activa-editorial .flow-step.active span{color:#92a6ff}
+body.activa-editorial .flow-step.active small{color:#bfc7dc}

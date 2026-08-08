@@ -1,6 +1,7 @@
 {
   "name": "ACTIVA · Sestavovač aktivit",
   "short_name": "ACTIVA",
+  "id": "./",
   "description": "Prémiové redakční studio pro profesionální pracovní listy, projekci a sdílení výukových aktivit.",
   "start_url": "./",
   "scope": "./",
@@ -30,5 +31,15 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "version": "0.5.9",
+  "ghrab_platform": {
+    "contract": "ghrab-platform-v1",
+    "version": "1.0.0",
+    "required_range": ">=1.0.0 <2.0.0",
+    "brand_version": "1.0.0",
+    "theme_contract": "ghrab-theme-v1",
+    "sw_contract": "ghrab-sw-v1",
+    "cache_name": "ghrab-activity-builder-v0.5.9"
+  }
 }

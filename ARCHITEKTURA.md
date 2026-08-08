@@ -1,4 +1,4 @@
-# ACTIVA 0.5.1 – architektura
+# ACTIVA 0.5.4 – architektura
 
 ACTIVA odděluje obsah aktivit, editor, tiskové renderery, projekci, knihovnu a perzistenci. `ACTIVA_PERSISTENCE` je jediná veřejná vstupní vrstva pro ukládání. Aktuální poskytovatel používá localStorage a IndexedDB s lokální zálohou. Serverová konfigurace má `enabled:false`; budoucí konektor může nahradit poskytovatele bez změny editoru.
 

@@ -30,8 +30,8 @@ const App={
 window.ACTIVA=App;
 function toast(message,type='info',duration=3200){const region=$('#toastRegion');if(!region)return;const el=document.createElement('div');el.className=`toast ${type}`;el.textContent=message;region.appendChild(el);setTimeout(()=>el.remove(),duration)}
 function setSaveState(status,label){const el=$('#saveState');if(!el)return;el.className=`save-state ${status||''}`;el.innerHTML=`<i></i> ${esc(label||'Uloženo')}`}
-function openModal(id){const el=$(`#${id}`);if(!el)return;el.classList.add('open');el.setAttribute('aria-hidden','false')}
-function closeModal(id){const el=$(`#${id}`);if(!el)return;el.classList.remove('open');el.setAttribute('aria-hidden','true')}
+function openModal(id){const el=$(`#${id}`);if(!el)return;el.inert=false;el.classList.add('open');el.setAttribute('aria-hidden','false')}
+function closeModal(id){const el=$(`#${id}`);if(!el)return;el.classList.remove('open');el.setAttribute('aria-hidden','true');el.inert=true}
 function setStep(step){if(!['source','activities','generate','editor'].includes(step))return;App.activeStep=step;$$('.screen').forEach((el)=>el.classList.toggle('active',el.dataset.screen===step));$$('.flow-step').forEach((el)=>{const order=['source','activities','generate','editor'];const current=order.indexOf(step),own=order.indexOf(el.dataset.step);el.classList.toggle('active',el.dataset.step===step);el.classList.toggle('done',own<current)});if(step==='activities'&&typeof updateRecommendations==='function')updateRecommendations();if(step==='generate'&&typeof renderGenerationSummary==='function')renderGenerationSummary();if(step==='editor'&&typeof renderEditor==='function')renderEditor();window.scrollTo({top:0,behavior:'smooth'})}
 function appRole(){return window.__GHRAB_STUDIO_ACCESS__?.permit?.role||'teacher'}
 function diagnosticSnapshot(){return{

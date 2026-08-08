@@ -19,10 +19,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - run: npm ci --no-fund
-      - run: npx playwright install --with-deps chromium
+
+      - name: Run unified error reporter regression
+        run: npm run test:reporter
       - run: node scripts/doc-import-test.mjs
       - run: npm run qa:release
       - uses: actions/upload-artifact@v4
@@ -30,6 +32,12 @@ jobs:
         with:
           name: activa-qa-results
           path: qa-results
+      - name: Verify GHRAB Platform P3 conformance
+        run: npm run qa:platform
+
+      - name: Enforce P5 R2 release gate
+        run: npm run qa:p5:ci
+
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

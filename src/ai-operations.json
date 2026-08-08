@@ -1,0 +1,27 @@
+{
+  "schema": "ghrab-ai-operations-v1",
+  "appId": "activity-builder",
+  "appVersion": "0.5.9",
+  "registryVersion": "1.1.0",
+  "coreVersion": "1.0.0",
+  "contractVersion": "1",
+  "defaultStreaming": false,
+  "operations": [
+    {
+      "operation": "activity-pack-generation",
+      "schemaId": "activity-builder.project.v1",
+      "defaultModelProfile": "balanced",
+      "allowedModelProfiles": [
+        "balanced",
+        "quality"
+      ],
+      "inputTypes": [
+        "text"
+      ],
+      "streaming": false,
+      "expectedOutputs": 1,
+      "maxOutputTokensHint": 32768,
+      "maxProviderRequestsPerWorkflow": 2
+    }
+  ]
+}

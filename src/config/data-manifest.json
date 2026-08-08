@@ -1,0 +1,136 @@
+{
+  "schema": "ghrab-data-manifest-v1",
+  "appId": "activity-builder",
+  "appVersion": "0.5.9",
+  "manifestVersion": 3,
+  "dataCategories": [
+    "settings",
+    "application-content",
+    "diagnostics",
+    "ai-prompts-and-results"
+  ],
+  "privacy": {
+    "studentContentMayOccur": true,
+    "telemetryContainsContent": false,
+    "diagnosticsContainContentByDefault": false,
+    "pseudonymisationIsNotAnonymisation": true
+  },
+  "stores": [
+    {
+      "kind": "localStorage",
+      "category": "application-data",
+      "patterns": [
+        "ghrab.activity-builder.*"
+      ],
+      "sensitivity": "potentially-personal",
+      "authority": "client",
+      "clearOnEndWork": true
+    },
+    {
+      "kind": "sessionStorage",
+      "category": "session-data",
+      "patterns": [
+        "ghrab.activity-builder.gemini.key.session",
+        "ghrab.activity-builder.presentation.history.v1"
+      ],
+      "sensitivity": "confidential",
+      "authority": "client",
+      "clearOnEndWork": true
+    },
+    {
+      "kind": "localStorage",
+      "category": "credential",
+      "patterns": [
+        "ghrab.activity-builder.gemini.key.permanent",
+        "ghrab.activity-builder.gemini.key.session"
+      ],
+      "sensitivity": "secret",
+      "authority": "client-direct-mode-only",
+      "clearOnEndWork": true
+    },
+    {
+      "kind": "sessionStorage",
+      "category": "credential",
+      "patterns": [
+        "ghrab.activity-builder.gemini.key.permanent",
+        "ghrab.activity-builder.gemini.key.session"
+      ],
+      "sensitivity": "secret",
+      "authority": "client-direct-mode-only",
+      "clearOnEndWork": true
+    },
+    {
+      "kind": "indexedDB",
+      "category": "application-data",
+      "names": [
+        "activa-library-v1"
+      ],
+      "sensitivity": "potentially-personal",
+      "authority": "client",
+      "clearOnEndWork": true
+    },
+    {
+      "kind": "cacheStorage",
+      "category": "application-cache",
+      "patterns": [
+        "ghrab-activity-builder-v*",
+        "activity-builder*"
+      ],
+      "sensitivity": "non-content-cache",
+      "authority": "client",
+      "clearOnEndWork": false
+    }
+  ],
+  "retention": {
+    "defaultDays": 30,
+    "sessionEndsOnLogout": true,
+    "serverLogsDays": 30
+  },
+  "export": {
+    "supported": true,
+    "requiresExplicitUserAction": true,
+    "includesSecrets": false,
+    "envelopeSchema": "ghrab-artifact-envelope-v1",
+    "artifactTypes": [
+      "activa-project",
+      "activa-library",
+      "activa-material",
+      "activa-share",
+      "activa-school-candidate"
+    ],
+    "nativeFormats": [
+      "html",
+      "pdf",
+      "docx",
+      "json"
+    ]
+  },
+  "deletion": {
+    "supported": true,
+    "clientVerified": true,
+    "serverEndpoint": "data/activity-builder"
+  },
+  "sharedDevice": {
+    "supported": true,
+    "defaultInSchoolProfile": true,
+    "control": "GHRABPlatform.endWork()"
+  },
+  "storageNamespace": {
+    "schema": "ghrab-storage-namespace-v1",
+    "prefix": "ghrab.activity-builder.",
+    "migrationId": "p2-storage-namespace-v1",
+    "backup": "full",
+    "rollbackSupported": true
+  },
+  "import": {
+    "supported": true,
+    "artifactTypes": [
+      "activa-project",
+      "activa-library",
+      "activa-material",
+      "activa-share"
+    ],
+    "acceptsLegacyJson": true,
+    "checksumRequiredForEnvelope": true
+  }
+}

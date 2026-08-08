@@ -77,12 +77,56 @@
     "internal-self-tests",
     "ghrab-qa-1.0.2",
     "storage-provider-adapter",
-    "backend-ready"
+    "backend-ready",
+    "activity-generation",
+    "print",
+    "projection",
+    "school-library",
+    "ai-generation",
+    "ghrab-platform-v1",
+    "canonical-branding",
+    "storage-namespace-v1",
+    "artifact-envelope-v1"
   ],
   "compatibility": {
     "studioMinVersion": "0.18.5",
     "materialSchema": "ghrab-material-v1",
-    "studioBridge": "1.1"
+    "studioBridge": "2.0",
+    "platformContract": "ghrab-platform-v1",
+    "platformRange": ">=1.1.0 <2.0.0"
   },
-  "publishedAt": "__BUILD_TIME__"
+  "publishedAt": "__BUILD_TIME__",
+  "aiCore": {
+    "schema": "ghrab-ai-app-integration-v1",
+    "status": "integrated-p1",
+    "coreVersion": "1.0.0",
+    "contractVersion": "1",
+    "serverReady": true,
+    "conformancePassed": true,
+    "operationsManifestUrl": "https://daniel22-dev.github.io/Sestavovac-aktivit/ai-operations.json",
+    "runtimeSchema": "ghrab-runtime-config-v1",
+    "gatewayContract": "ghrab-ai-request-v1",
+    "certificationStatus": "certified-p1",
+    "certificationEvidence": "evidence/p1-ai-conformance.json",
+    "certifiedOperations": 1
+  },
+  "slug": "activa",
+  "paths": {
+    "app": "https://daniel22-dev.github.io/Sestavovac-aktivit/",
+    "manual": "https://daniel22-dev.github.io/Sestavovac-aktivit/manual/",
+    "manifest": "https://daniel22-dev.github.io/Sestavovac-aktivit/studio-manifest.json"
+  },
+  "platform": {
+    "schema": "ghrab-platform-app-integration-v1",
+    "contract": "ghrab-platform-v1",
+    "requiredPlatformRange": ">=1.1.0 <2.0.0",
+    "platformVersion": "1.0.0",
+    "brandVersion": "1.0.0",
+    "themeContract": 1,
+    "swContract": 1,
+    "studioBridge": 2,
+    "artifactEnvelope": 1,
+    "storagePrefix": "ghrab.activity-builder.",
+    "cacheName": "ghrab-activity-builder-v0.5.9"
+  }
 }
