@@ -1,5 +1,5 @@
 /* ===================== GHRAB AI CORE 1.0.0 · ACTIVA P1 ===================== */
-const ACT_AI_APP=Object.freeze({id:'activity-builder',version:'0.5.9'});
+const ACT_AI_APP=Object.freeze({id:'activity-builder',version:'0.5.10'});
 const ACT_AI_SCHEMA_ID='activity-builder.project.v1';
 const ACT_AI_SCHEMAS=Object.freeze({[ACT_AI_SCHEMA_ID]:{type:'object',required:['title','activities'],properties:{title:{type:'string'},teacherNote:{type:'string'},activities:{type:'array',items:{type:'object'}}},additionalProperties:true}});
 const ACT_AI_OPERATIONS=Object.freeze({schema:'ghrab-ai-operations-v1',appId:ACT_AI_APP.id,operations:Object.freeze({'activity-pack-generation':{outputSchemaId:ACT_AI_SCHEMA_ID,defaultModelProfile:'balanced',allowedModelProfiles:['balanced','quality'],inputTypes:['text'],streaming:false,requiredCapabilities:[],expectedOutputs:1,maxOutputTokensHint:32768}})});

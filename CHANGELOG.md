@@ -1,3 +1,11 @@
+## 0.5.10 — sjednocení reportéru (2026-08-13)
+
+- Reportér používá dvoukrokové vytvoření a skutečné stažení diagnostického ZIPu; Gmail je dostupný až po kliknutí na stažení.
+- Rozhraní i e-mail vyžadují ruční přiložení ZIPu a pomocné video je bezpečně skryté uvnitř reportéru i při scrollování.
+- Regresní sada fyzicky ověřuje stažený ZIP, jeho snímky a diagnostiku, jednu instanci reportéru, motivy, mobilní zobrazení a klávesnici.
+- Úplný manuál je na úzkých displejích omezen na šířku viewportu; vodorovná navigace zůstává posuvná bez přetečení stránky.
+- Tvorba aktivit ani uložené materiály nebyly změněny; PWA cache je `ghrab-activity-builder-v0.5.10`.
+
 ## 0.5.9 — P5 (2026-08-05)
 
 

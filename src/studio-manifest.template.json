@@ -127,6 +127,6 @@
     "studioBridge": 2,
     "artifactEnvelope": 1,
     "storagePrefix": "ghrab.activity-builder.",
-    "cacheName": "ghrab-activity-builder-v0.5.9"
+    "cacheName": "ghrab-activity-builder-v0.5.10"
   }
 }
